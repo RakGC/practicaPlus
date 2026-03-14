@@ -13,42 +13,34 @@
         <section id="hero">
         <h1 id="h1-registro"> registrate con nosotros </h1>
         </section>
-        <section id="formulario">
-            <form id="formulario" novalidate>
-      <label>Nombre
-        <input id="nombre" type="text">
-      </label>
+      <section id="formulario-unirse">
+      <h2>¿Quieres estar informado?</h2>
+      <p>Puedes registrarte y recibir notificaciones y novedades por correo electrónico.</p>
 
-      <label>Apellidos
-        <input id="apellidos" type="text">
-      </label>
+      <form id="formulario" class="formulario" novalidate>
+        <div class="form-group">
+          <label for="nombre">Nombre</label>
+          <input id="nombre" type="text" placeholder="Tu nombre">
+        </div>
 
-      <label>Email
-        <input id="email" type="email">
-      </label>
+        <div class="form-group">
+          <label for="apellidos">Apellidos</label>
+          <input id="apellidos" type="text" placeholder="Tus apellidos">
+        </div>
 
-      <label>Contraseña
-        <input id="password" type="password">
-      </label>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input id="email" type="email" placeholder="correo@dominio.com">
+        </div>
 
-      <label>Repetir contraseña
-        <input id="password2" type="password">
-      </label>
+        <label class="check-container">
+          <input id="condiciones" type="checkbox">
+          <span>Acepto las condiciones</span>
+        </label>
 
-      <label>Edad
-        <input id="edad" type="number">
-      </label>
-
-      <label class="check">
-        <input id="condiciones" type="checkbox">
-        Acepto las condiciones
-      </label>
-      <div id="errores"></div>
-      <button type="submit">Enviar</button>
-      
-    </form>
-
-    <section id="mensajes" class="mensajes" aria-live="polite"></section>
+        <div id="mensajes"></div>
+        <button type="submit">Enviar</button>
+</form>
         </section>
         </body>
 </html>
