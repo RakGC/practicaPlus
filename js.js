@@ -1,45 +1,48 @@
-const form = document.querySelector("#formulario");
+const formulario = document.querySelector("#formulario");
+        const mensajes = document.querySelector("#mensajes");
 
-form.addEventListener("submit", function (event) {
-  event.preventDefault();
+        if (formulario){
+            formulario.addEventListener("submit",function(event){
+            event.preventDefault();
 
-  let errores = [];
+            const nameValue = document.querySelector("#nombre").value.trim();
+            const surnameValue = document.querySelector("#apellidos").value.trim();
+            const emailValue = document.querySelector("#email").value.trim();
+            const checkConditions = document.querySelector("#condiciones").checked; 
+            const errTimer = 2000;
 
-  const nombre = document.querySelector("#nombre").value.trim();
-  const apellidos = document.querySelector("#apellidos").value.trim();
-  const email = document.querySelector("#email").value.trim();
-  const pass = document.querySelector("#password").value;
+            let errores = [];
 
-  if (nombre.length < 3) {
-    errores.push("El nombre debe tener al menos 3 caracteres.");
-  }
+            mensajes.innerHTML = "";
+            mensajes.className = "mensajes";
 
-  if (apellidos.length < 3) {
-    errores.push("Los apellidos deben tener al menos 3 caracteres.");
-  }
+            if (nameValue.length < 3){
+                errores.push("Nombre inválido, debe tener al menos tres caracteres.")
+            };
 
-  const posicionArroba = email.indexOf("@");
-  const posicionPunto = email.lastIndexOf(".");
+            if (surnameValue.length < 3){
+                errores.push("Apellidos inválidos, deben tener al menos 3 caracteres.")
+            };
 
-  if (
-    posicionArroba === -1 ||
-    posicionPunto === -1 ||
-    posicionPunto < posicionArroba
-  ) {
-    errores.push("El email no es válido.");
-  }
+            if (emailValue.indexOf("@") === -1 || emailValue.indexOf(".")===-1 || emailValue.lastIndexOf(".")< emailValue.indexOf("@")){ //si el @ no está, o no está el . o si el . esta antes del @, da error
+                errores.push("Email inválido, por favor, utiliza \"@.\" adecuadamente.")
+            }
 
-  if (pass1.length < 6) {
-    errores.push("La contraseña debe tener al menos 8 caracteres.");
-  }
+            if (!checkConditions){
+                errores.push("Debes aceptar las condiciones.")
+            };
 
-  if (errores.length > 0) {
-    mensajes.innerHTML = errores.join("<br>");
-    mensajes.className = "mensajes err";
-    return;
-  }
+            if (errores.length > 0){
+                mensajes.className = "mensajes err";
+                mensajes.innerHTML = errores.join("<br>");
+                setTimeout (()=>{
+                    mensajes.innerHTML="";
+                    mensajes.className="mensajes";
+            },errTimer);
+            }else {
+                mensajes.className = "mensajes ok";
+                mensajes.innerHTML = "¡Gracias por interesarte!"
+                formulario.reset();
+            };
 
-  mensajes.textContent = "Formulario enviado correctamente.";
-  mensajes.className = "mensajes ok";
-  form.submit();
-});
+            });
